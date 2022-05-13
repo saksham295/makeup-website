@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useRoutes, BrowserRouter as Router } from "react-router-dom";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/home-page/Home";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  let routes = useRoutes([
+    {
+      path: "/",
+      element: <Home />,
+    },
+  ]);
+  return routes;
 }
 
-export default App;
+const AppWrapper = () => {
+  return (
+    <HelmetProvider>
+      <Helmet>
+        <title>Deepakshi Global</title>
+      </Helmet>
+      <Router>
+        <Navbar />
+        <App />
+
+        {/* <Footer /> */}
+      </Router>
+    </HelmetProvider>
+  );
+};
+
+export default AppWrapper;
