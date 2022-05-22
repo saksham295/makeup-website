@@ -2,6 +2,8 @@ import "./App.css";
 import { useRoutes, BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./components/home-page/Home";
+import AcneDetection from "./components/acne/AcneDetection";
+import Footer from "./components/footer/Footer";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function App() {
@@ -9,6 +11,10 @@ function App() {
     {
       path: "/",
       element: <Home />,
+    },
+    {
+      path: "/acne-detection",
+      element: <AcneDetection />,
     },
   ]);
   return routes;
@@ -23,7 +29,6 @@ const AppWrapper = () => {
       <Router>
         <Navbar />
         <App />
-
         {/* <Footer /> */}
       </Router>
     </HelmetProvider>

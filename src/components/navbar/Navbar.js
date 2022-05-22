@@ -12,6 +12,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import dglogo from "../../assets/logo1.jpeg";
 
 const headersData = [
   {
@@ -38,15 +39,23 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#fafafa",
     paddingRight: "79px",
     paddingLeft: "118px",
-    "@media (max-width: 900px)": {
+    "@media (max-width: 950px)": {
       paddingLeft: 0,
+      paddingRight: 0,
     },
   },
   logo: {
     fontFamily: "Source Sans Pro, sans-serif",
     fontWeight: 600,
+    margin: "0px 5px",
     color: "#000",
     textAlign: "left",
+  },
+  logoContainer: {
+    display: "flex",
+    "@media (max-width: 950px)": {
+      width: "100%",
+    },
   },
   menuButton: {
     fontFamily: "Source Sans Pro, sans-serif",
@@ -64,7 +73,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Navbar = () => {
-  const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
+  const { header, logo, menuButton, toolbar, drawerContainer, logoContainer } =
+    useStyles();
 
   const [state, setState] = useState({
     mobileView: false,
@@ -75,7 +85,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 900
+      return window.innerWidth <= 950
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -161,9 +171,12 @@ const Navbar = () => {
   };
 
   const deepakshiGlobalLogo = (
-    <Typography variant="h6" component="h1" className={logo}>
-      Deepakshi Global
-    </Typography>
+    <div className={logoContainer}>
+      <img src={dglogo} alt="logo" height="30" style={{ margin: "2px" }} />
+      <Typography variant="h6" component="h1" className={logo}>
+        Deepakshi Global
+      </Typography>
+    </div>
   );
 
   const getMenuButtons = () => {
