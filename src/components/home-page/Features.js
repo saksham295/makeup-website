@@ -95,51 +95,57 @@ const Features = () => {
           className={card}
           key={i}
         >
-          <CardMedia
-            component="img"
-            height="50%"
-            image={feature.img}
-            alt="feature"
-          />
-          <CardContent
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <Typography
-              gutterBottom
-              variant="h5"
-              align="center"
-              component="div"
-              color="#6f3e29"
+          <Link to={feature.link} style={{ textDecoration: "none" }}>
+            <CardMedia
+              component="img"
+              height="50%"
+              image={feature.img}
+              alt="feature"
+            />
+            <CardContent
               style={{
-                fontFamily: "Source Sans Pro, sans-serif",
-                fontWeight: "bold",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
               }}
             >
-              {feature.name}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="#6f3e29"
-              align="justify"
+              <Typography
+                gutterBottom
+                variant="h5"
+                align="center"
+                component="div"
+                color="#6f3e29"
+                style={{
+                  fontFamily: "Source Sans Pro, sans-serif",
+                  fontWeight: "bold",
+                }}
+              >
+                {feature.name}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="#6f3e29"
+                align="justify"
+                style={{
+                  fontFamily: "Source Sans Pro, sans-serif",
+                  fontWeight: "bold",
+                }}
+              >
+                {feature.desc}
+              </Typography>
+            </CardContent>
+            <CardActions
               style={{
-                fontFamily: "Source Sans Pro, sans-serif",
-                fontWeight: "bold",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              {feature.desc}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Link to={feature.link}>
               <Button size="medium" style={{ color: "#6f3e29" }}>
                 <ArrowForwardIcon />
               </Button>
-            </Link>
-          </CardActions>
+            </CardActions>
+          </Link>
         </Card>
       ))}
     </div>
