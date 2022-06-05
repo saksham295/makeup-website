@@ -26,11 +26,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     // width: "30%",
     "@media (max-width: 1250px )": {
-      height: "80vh",
       margin: "15px 12px",
     },
     "@media (max-width: 375px )": {
-      height: "120vh",
       margin: "10px 10px",
     },
     // "@media (max-width: 800px)": {
