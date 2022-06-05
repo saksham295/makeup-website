@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
     margin: "5px",
     "@media (max-width: 800px)": {
       margin: 0,
+      marginBottom: "5px",
       width: "100%",
     },
   },
@@ -35,10 +36,17 @@ const useStyles = makeStyles(() => ({
       width: "100%",
     },
   },
+  container: {
+    display: "flex",
+    alignItems: "center",
+    "@media (max-width: 800px)": {
+      flexDirection: "column",
+    },
+  },
 }));
 
 export const WebcamCapture = () => {
-  const { button, webcam, captureButton } = useStyles();
+  const { button, webcam, captureButton, container } = useStyles();
   const [image, setImage] = useState("");
   const webcamRef = React.useRef(null);
 
@@ -49,7 +57,7 @@ export const WebcamCapture = () => {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div className={container}>
         {image === "" ? (
           <Webcam
             audio={false}
