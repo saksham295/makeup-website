@@ -1,18 +1,17 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
-  makeStyles,
   Button,
   IconButton,
   Drawer,
   Link,
   MenuItem,
 } from "@material-ui/core";
+import "./navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import dglogo from "../../assets/logo1.jpeg";
+import logo from "../../assets/logo.png";
 
 const headersData = [
   {
@@ -20,62 +19,24 @@ const headersData = [
     href: "/",
   },
   {
-    label: "Mentors",
-    href: "/mentors",
+    label: "Features",
+    href: "/features",
   },
   {
-    label: "About",
-    href: "/about-us",
+    label: "Products",
+    href: "/products",
   },
   {
-    label: "Contact Us",
-    href: "/contact-us",
+    label: "Team",
+    href: "/team",
+  },
+  {
+    label: "Healthcare",
+    href: "/healthcare",
   },
 ];
 
-const useStyles = makeStyles(() => ({
-  header: {
-    position: "relative",
-    backgroundColor: "#fafafa",
-    paddingRight: "79px",
-    paddingLeft: "118px",
-    "@media (max-width: 950px)": {
-      paddingLeft: 0,
-      paddingRight: 0,
-    },
-  },
-  logo: {
-    fontFamily: "Source Sans Pro, sans-serif",
-    fontWeight: 600,
-    margin: "0px 5px",
-    color: "#000",
-    textAlign: "left",
-  },
-  logoContainer: {
-    display: "flex",
-    "@media (max-width: 950px)": {
-      width: "100%",
-    },
-  },
-  menuButton: {
-    fontFamily: "Source Sans Pro, sans-serif",
-    fontWeight: 700,
-    size: "18px",
-    marginLeft: "38px",
-  },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  drawerContainer: {
-    padding: "20px 30px",
-  },
-}));
-
 const Navbar = () => {
-  const { header, logo, menuButton, toolbar, drawerContainer, logoContainer } =
-    useStyles();
-
   const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
@@ -101,9 +62,18 @@ const Navbar = () => {
 
   const displayDesktop = () => {
     return (
-      <Toolbar className={toolbar}>
+      <Toolbar className="toolbar">
         {deepakshiGlobalLogo}
-        <div>{getMenuButtons()}</div>
+        <div
+          style={{
+            width: "50%",
+            display: "flex",
+            justifyContent: "space-evenly",
+          }}
+        >
+          {getMenuButtons()}
+        </div>
+        {getTryNowButton}
       </Toolbar>
     );
   };
@@ -115,7 +85,7 @@ const Navbar = () => {
       setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
     return (
-      <Toolbar>
+      <Toolbar className="toolbar">
         <IconButton
           {...{
             edge: "start",
@@ -125,7 +95,7 @@ const Navbar = () => {
             onClick: handleDrawerOpen,
           }}
         >
-          <MenuIcon style={{ color: "#000" }} />
+          <MenuIcon style={{ color: "white" }} />
         </IconButton>
 
         <Drawer
@@ -135,10 +105,11 @@ const Navbar = () => {
             onClose: handleDrawerClose,
           }}
         >
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
+          <div className="drawerContainer">{getDrawerChoices()}</div>
         </Drawer>
 
         <div>{deepakshiGlobalLogo}</div>
+        {getTryNowButton}
       </Toolbar>
     );
   };
@@ -159,8 +130,9 @@ const Navbar = () => {
         >
           <MenuItem
             style={{
-              fontFamily: "Source Sans Pro, sans-serif",
+              fontFamily: "var(--font-family)",
               fontWeight: 700,
+              color: "white",
             }}
           >
             {label}
@@ -171,11 +143,8 @@ const Navbar = () => {
   };
 
   const deepakshiGlobalLogo = (
-    <div className={logoContainer}>
-      <img src={dglogo} alt="logo" height="30" style={{ margin: "2px" }} />
-      <Typography variant="h6" component="h1" className={logo}>
-        Deepakshi Global
-      </Typography>
+    <div className="logoContainer">
+      <img src={logo} alt="logo" style={{ height: "9vh", width: "100%" }} />
     </div>
   );
 
@@ -183,13 +152,13 @@ const Navbar = () => {
     return headersData.map(({ label, href }) => {
       return (
         <Button
-          style={{ color: "#000" }}
+          style={{ color: "white" }}
           {...{
             key: label,
             color: "inherit",
             to: href,
             component: RouterLink,
-            className: menuButton,
+            className: "menuButton",
           }}
         >
           {label}
@@ -198,12 +167,12 @@ const Navbar = () => {
     });
   };
 
+  const getTryNowButton = <Button className="tryNowButton">TRY NOW!</Button>;
+
   return (
-    <header>
-      <AppBar className={header}>
-        {mobileView ? displayMobile() : displayDesktop()}
-      </AppBar>
-    </header>
+    <AppBar className="navbar">
+      {mobileView ? displayMobile() : displayDesktop()}
+    </AppBar>
   );
 };
 

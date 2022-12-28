@@ -1,0 +1,60 @@
+.navbar {
+  position: relative !important;
+  background-color: var(--color-primary) !important;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.logoContainer {
+  display: flex;
+}
+
+.menuButton {
+  font-family: var(--font-family) !important;
+  font-size: 15px !important;
+  padding: 0;
+}
+
+.menuButton:hover {
+  text-decoration: underline !important;
+  text-decoration-color: var(--color-secondary) !important;
+  text-decoration-thickness: 2px !important;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.drawerContainer {
+  padding: 20px 30px;
+  background: var(--color-primary) !important;
+  height: 100%;
+}
+
+.tryNowButton {
+  background: var(--color-secondary) !important;
+  width: 15%;
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+}
+
+.tryNowButton:hover {
+  background: var(--color-secondary);
+}
+
+@media screen and (max-width: 950px) {
+  .navbar {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .logoContainer {
+    width: 90%;
+  }
+
+  .tryNowButton {
+    width: 35%;
+  }
+}
