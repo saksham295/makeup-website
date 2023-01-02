@@ -471,9 +471,10 @@ def final(img_path, colors):
 @cross_origin()
 def color():
     file = request.files["file"]
-    # haircolor = request.text["haircolor"]
-    # lipcolor = request.text["lipcolor"]
-    # colors = [haircolor, lipcolor, lipcolor]
+    # colors = ['#000', '#000', '#000']
+    haircolor = request.form["haircolor"]
+    lipcolor = request.form["lipcolor"]
+    colors = [str(haircolor), str(lipcolor), str(lipcolor)]
     ####### saving input image to folder ######
     mkdir("input_img_dir")
 
@@ -488,7 +489,7 @@ def color():
     os.getcwd()
     ############################################
 
-    output_img = final(img_path, colors=['#000', '#000', '#000'])
+    output_img = final(img_path, colors)
     output_img.save('../src/assets/colorOutput.png')
     return jsonify({"Status": "output_img_dir/output.png"})
 

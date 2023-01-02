@@ -67,6 +67,10 @@
 }
 
 @media screen and (max-width: 490px) {
+  .acneDetection h1 {
+    font-size: 18px;
+  }
+
   .acneDetection img {
     height: 150px;
   }
@@ -80,7 +84,6 @@
   }
 
   .acnePrevention h2 {
-    font-family: var(--font-family);
     font-size: 16px;
   }
 
