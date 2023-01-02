@@ -71,7 +71,12 @@ const Home = () => {
                 Experiment new finishes and play with colors to find the right
                 match for you in just a few clicks.
               </p>
-              <Button>Try It On</Button>
+              <Link
+                to="color-tryon"
+                style={{ textDecoration: "none", display: "flex" }}
+              >
+                <Button>Try It On</Button>
+              </Link>
             </div>
           </div>
 
@@ -101,7 +106,7 @@ const Home = () => {
 
           <Divider />
 
-          <div id="Healthcare" className="feature">
+          <div className="feature">
             <div className="featureImg">
               <img src={feature3} alt="feature3" />
             </div>

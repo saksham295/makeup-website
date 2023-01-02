@@ -1,0 +1,54 @@
+.color {
+  margin: 3rem;
+}
+
+.color h1 {
+  font-family: var(--font-family);
+  font-size: 24px;
+}
+
+.colorTryOn {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.colorTryOn img {
+  height: 250px;
+}
+
+.colorTryOn button {
+  margin: auto 2rem;
+  font-family: var(--font-family);
+  background: var(--color-secondary) !important;
+  width: 180px;
+  color: white !important;
+  font-weight: 700;
+}
+
+.colorOutput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 1050px) {
+  .colorTryOn {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .colorTryOn button {
+    margin: 2rem auto;
+  }
+
+  .colorTryOn img {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .colorTryOn img {
+    height: 150px;
+  }
+}
