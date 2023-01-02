@@ -2,8 +2,7 @@ import "./App.css";
 import { useRoutes, BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Home from "./containers/home/Home";
-import AcneDetection from "./components/acne/AcneDetection";
-// import Footer from "./components/footer/Footer";
+import AcneDetection from "./containers/acne/AcneDetection";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function App() {
@@ -29,7 +28,6 @@ const AppWrapper = () => {
       <Router>
         <Navbar />
         <App />
-        {/* <Footer /> */}
       </Router>
     </HelmetProvider>
   );

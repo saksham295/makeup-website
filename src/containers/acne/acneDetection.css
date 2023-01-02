@@ -1,0 +1,95 @@
+.acne {
+  margin: 3rem;
+}
+
+.acne h1 {
+  font-family: var(--font-family);
+  font-size: 24px;
+}
+
+.acneDetection {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.acneDetection img {
+  height: 250px;
+}
+
+.acneDetection button {
+  margin: auto 2rem;
+  font-family: var(--font-family);
+  background: var(--color-secondary) !important;
+  width: 180px;
+  color: white !important;
+  font-weight: 700;
+}
+
+.acneOutput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.acneOutput p {
+  margin-top: 1rem;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.acnePrevention h2 {
+  font-family: var(--font-family);
+  font-size: 20px;
+}
+
+.acnePrevention ol {
+  padding: 0 2rem;
+  font-family: var(--font-family);
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1050px) {
+  .acneDetection {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .acneDetection button {
+    margin: 2rem auto;
+    font-family: var(--font-family);
+    background: var(--color-secondary) !important;
+    width: 180px;
+    color: white !important;
+    font-weight: 700;
+  }
+
+  .acneDetection img {
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .acneDetection img {
+    height: 150px;
+  }
+
+  .acneOutput p {
+    font-size: 12px;
+  }
+
+  .acnePrevention h2 {
+    font-size: 16px;
+  }
+
+  .acnePrevention h2 {
+    font-family: var(--font-family);
+    font-size: 16px;
+  }
+
+  .acnePrevention ol {
+    font-size: 12px;
+  }
+}

@@ -33,6 +33,7 @@
 }
 
 .tryNowButton {
+  font-family: var(--font-family) !important;
   background: var(--color-secondary) !important;
   width: 15%;
   color: white !important;

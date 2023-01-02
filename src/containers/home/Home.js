@@ -7,6 +7,7 @@ import feature1 from "../../assets/feature1.png";
 import feature2 from "../../assets/feature2.png";
 import feature3 from "../../assets/feature3.png";
 import thanksIcon from "../../assets/thanks.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -100,7 +101,7 @@ const Home = () => {
 
           <Divider />
 
-          <div className="feature">
+          <div id="Healthcare" className="feature">
             <div className="featureImg">
               <img src={feature3} alt="feature3" />
             </div>
@@ -110,7 +111,12 @@ const Home = () => {
                 In the mood for epic artistry or a work-from-home glow? Pick
                 your favorite looks from our looks catalog, try it on, and shop!
               </p>
-              <Button>Try It On</Button>
+              <Link
+                to="acne-detection"
+                style={{ textDecoration: "none", display: "flex" }}
+              >
+                <Button>Try It On</Button>
+              </Link>
             </div>
           </div>
 

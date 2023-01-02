@@ -104,14 +104,11 @@
 }
 
 .featureContent button {
+  font-family: var(--font-family);
   background: var(--color-secondary) !important;
   width: 180px;
   color: white !important;
   font-weight: 700;
-}
-
-.tryNowButton:hover {
-  background: var(--color-secondary);
 }
 
 .featureImg {
@@ -151,7 +148,7 @@
 .footer {
   width: 100%;
   background-color: black;
-  height: 100px;
+  height: 3rem;
 }
 
 @media screen and (max-width: 950px) {
