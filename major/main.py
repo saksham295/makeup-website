@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-
+from flask import Flask, send_file, request
+from flask_cors import CORS, cross_origin
 import tensorflow as tf
 import numpy as np
 from imageio import imread, imsave
-import os, glob, cv2
+import os
+import glob
+import cv2
 
-nm1 = os.path.join('faces', 'no_makeup', 'a.png')
-m1 = os.path.join('faces', 'makeup', 'a.png')
+app = Flask(__name__)
+CORS(app)
 img_size = 256
 
 class DMT(object):
@@ -109,7 +112,26 @@ class DMT(object):
                 result[i * img_size: (i + 1) * img_size, j * img_size: (j + 1) * img_size] = self.deprocess(Xf_)[0]
         imsave(os.path.join('output', 'multimodal.jpg'), result)
 
+model = DMT()
+model.load_model()
+
+@app.route('/pairwise', methods=['POST'])
+@cross_origin()
+def pairwiseApi():
+    print(request.files)
+    no_makeup_file = request.files['no_makeup']
+    makeup_file = request.files['makeup']
+
+    no_makeup_path = 'faces/no_makeup/no_makeup.jpg'
+    makeup_path = 'faces/makeup/makeup.jpg'
+    no_makeup_file.save(no_makeup_path)
+    makeup_file.save(makeup_path)
+
+    model.pairwise(no_makeup_path, makeup_path)
+    generated_image_path = 'output/pairwise.jpg'
+
+    return send_file(generated_image_path, mimetype='image/jpeg')
+
 if __name__ == '__main__':
-    model = DMT()
-    model.load_model()
-    model.pairwise(nm1, m1)
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Set max upload size (e.g., 16MB)
+    app.run(host='127.0.0.1', port=7001)

@@ -124,7 +124,6 @@ class ContextPath(nn.Module):
     def __init__(self, *args, **kwargs):
         super(ContextPath, self).__init__()
         self.resnet = Resnet18()
-        print("7")
         self.arm16 = AttentionRefinementModule(256, 128)
         self.arm32 = AttentionRefinementModule(512, 128)
         self.conv_head32 = ConvBNReLU(128, 128, ks=3, stride=1, padding=1)
@@ -230,7 +229,6 @@ class BiSeNet(nn.Module):
     def __init__(self, n_classes, *args, **kwargs):
         super(BiSeNet, self).__init__()
         self.cp = ContextPath()
-        print("6")
         # here self.sp is deleted
         self.ffm = FeatureFusionModule(256, 256)
         self.conv_out = BiSeNetOutput(256, 256, n_classes)
@@ -335,7 +333,6 @@ class Resnet18(nn.Module):
         self.layer2 = create_layer_basic(64, 128, bnum=2, stride=2)
         self.layer3 = create_layer_basic(128, 256, bnum=2, stride=2)
         self.layer4 = create_layer_basic(256, 512, bnum=2, stride=2)
-        print('8')
         self.init_weight()
 
     def forward(self, x):
@@ -356,9 +353,7 @@ class Resnet18(nn.Module):
             if 'fc' in k:
                 continue
             self_state_dict.update({k: v})
-        print("🚀 ~ file: main.py:360 ~ self_state_dict", type(self_state_dict))
         self.load_state_dict(self_state_dict)
-        print('9')
 
     def get_params(self):
         wd_params, nowd_params = [], []
@@ -373,10 +368,8 @@ class Resnet18(nn.Module):
 
 
 def evaluate(image_path, cp):
-    print("4")
     n_classes = 19
     net = BiSeNet(n_classes=n_classes)
-    print("5")
     net.load_state_dict(torch.load(cp, map_location=torch.device('cpu')))
     net.eval()
     to_tensor = transforms.Compose([
@@ -440,7 +433,6 @@ def hair(image, parsing, part=17, color=[230, 50, 20]):
 
 
 def final(img_path, colors):
-    print("1")
     image = cv2.imread(img_path)
     table = {
         'hair': 17,
@@ -455,7 +447,6 @@ def final(img_path, colors):
 
     image = cv2.resize(image, (1024, 1024))
 
-    print("3")
     parsing = evaluate(img_path, cp)
     parsing = cv2.resize(
         parsing, image.shape[0:2], interpolation=cv2.INTER_NEAREST)
@@ -498,9 +489,7 @@ def color():
     os.getcwd()
     ############################################
 
-    print('1')
     output_img = final(img_path, colors)
-    print('2')
     output_img.save('../src/assets/colorOutput.png')
     return jsonify({"Status": "output_img_dir/output.png"})
 

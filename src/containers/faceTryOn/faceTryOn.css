@@ -1,0 +1,98 @@
+.face {
+  margin: 3rem;
+}
+
+.face h1 {
+  font-family: var(--font-family);
+  font-size: 24px;
+}
+
+.file-input {
+  position: relative;
+  display: inline-block;
+}
+
+.inputfile {
+  display: none;
+}
+
+.file-input label {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  cursor: pointer;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.file-input label:hover {
+  opacity: 80%;
+}
+
+.face-transfer {
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0;
+  align-items: center;
+}
+
+.face-transfer img {
+  height: 250px;
+  max-width: 45%;
+}
+
+.face-transfer p {
+  font-family: var(--font-family);
+  font-size: 24px;
+  margin: 0 1rem;
+}
+
+.face-transfer button {
+  margin: 0 2rem;
+  font-family: var(--font-family);
+  background: var(--color-secondary) !important;
+  width: 180px;
+  color: white !important;
+  font-weight: 700;
+}
+
+.output-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.output-container img {
+  max-width: 90%;
+}
+
+.output-container p {
+  font-family: var(--font-family);
+  font-size: 24px;
+  margin: 2rem 0;
+}
+
+@media screen and (max-width: 490px) {
+  .face h1 {
+    font-size: 18px;
+  }
+
+  .face-transfer {
+    flex-direction: column;
+  }
+
+  .face-transfer button {
+    margin: 2rem 0;
+  }
+
+  .face-transfer img {
+    height: 150px;
+  }
+
+  .output-container p {
+    font-size: 14px;
+    margin: 2rem 0;
+  }
+}

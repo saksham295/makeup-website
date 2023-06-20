@@ -92,11 +92,12 @@ const Home = () => {
                 to radiant all with amazing accuracy!
               </p>
               <div>
-                <Button
-                  style={{ position: "absolute", right: "2rem", bottom: 0 }}
+                <Link
+                  to="face-tryon"
+                  style={{ textDecoration: "none", display: "flex" }}
                 >
-                  Try It On
-                </Button>
+                  <Button>Try It On</Button>
+                </Link>
               </div>
             </div>
             <div className="featureImg">
