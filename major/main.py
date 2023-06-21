@@ -5,7 +5,6 @@ import tensorflow as tf
 import numpy as np
 from imageio import imread, imsave
 import os
-import glob
 import cv2
 
 app = Flask(__name__)
@@ -58,59 +57,7 @@ class DMT(object):
         result[:, 2 * img_size:] = self.deprocess(Xs_)[0]
         imsave(os.path.join('output', 'pairwise.jpg'), result)
 
-    def interpolated(self, A, B, n=3):
-        A_img, A_img_ = self.load_image(A)
-        B_img, B_img_ = self.load_image(B)
-        A_style = self.sess.run(self.X_style, feed_dict={self.X: A_img_})
-        B_style = self.sess.run(self.X_style, feed_dict={self.X: B_img_})
-
-        result = np.ones((img_size, (n + 3) * img_size, 3))
-        result[:, :img_size] = A_img
-        result[:, (n + 2) * img_size:] = B_img
-
-        for i in range(n + 1):
-            Xf_ = self.sess.run(self.Xf, feed_dict={self.X: A_img_, self.S: (n - i) / n * A_style + i / n * B_style})
-            result[:, (i + 1) * img_size: (i + 2) * img_size] = self.deprocess(Xf_)[0]
-        imsave(os.path.join('output', 'interpolated.jpg'), result)
-
-    def hybrid(self, A, B1, B2, n=3):
-        A_img, A_img_ = self.load_image(A)
-        B1_img, B1_img_ = self.load_image(B1)
-        B2_img, B2_img_ = self.load_image(B2)
-        B1_style = self.sess.run(self.X_style, feed_dict={self.X: B1_img_})
-        B2_style = self.sess.run(self.X_style, feed_dict={self.X: B2_img_})
-
-        result = np.ones((img_size, (n + 3) * img_size, 3))
-        result[:, :img_size] = B1_img
-        result[:, (n + 2) * img_size:] = B2_img
-
-        for i in range(n + 1):
-            Xf_ = self.sess.run(self.Xf, feed_dict={self.X: A_img_, self.S: (n - i) / n * B1_style + i / n * B2_style})
-            result[:, (i + 1) * img_size: (i + 2) * img_size] = self.deprocess(Xf_)[0]
-        imsave(os.path.join('output', 'hybrid.jpg'), result)
-
-    def multimodal(self, A, n=3):
-        A_img, A_img_ = self.load_image(A)       
-        limits = [
-            [0.21629652, -0.43972224],
-            [0.15712686, -0.44275892],
-            [0.36736163, -0.2079917],
-            [0.16977102, -0.49441707],
-            [0.2893533, -0.25862852],
-            [0.69064325, -0.11329838],
-            [0.31735066, -0.48868555],
-            [0.50784767, -0.08443227]
-        ]
-        result = np.ones((n * img_size, n * img_size, 3))
-
-        for i in range(n):
-            for j in range(n):
-                S_ = np.ones((1, 1, 1, self.style_dim))
-                for k in range(self.style_dim):
-                    S_[:, :, :, k] = np.random.uniform(low=limits[k][1], high=limits[k][0])
-                Xf_ = self.sess.run(self.Xf, feed_dict={self.X: A_img_, self.S: S_})
-                result[i * img_size: (i + 1) * img_size, j * img_size: (j + 1) * img_size] = self.deprocess(Xf_)[0]
-        imsave(os.path.join('output', 'multimodal.jpg'), result)
+    
 
 model = DMT()
 model.load_model()
